@@ -1,6 +1,6 @@
 ---
 // Layout.astro
-import Header from '../components/general/Header.astro';
+import Header from '../components/general/Header.jsx';
 import '../styles/global.css';
 
 interface Props {
@@ -32,7 +32,7 @@ const {
         <div class="fixed inset-0 bg-[linear-gradient(rgba(0,0,0,0.2)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.2)_2px,transparent_2px)] bg-[size:50px_50px] pointer-events-none"></div>
         
         <!-- Header -->
-        <Header />
+        <Header client:load />
         
         <!-- Contenido principal -->
         <main class="container mx-auto px-4 pt-16 md:pt-24 pb-12 relative">
