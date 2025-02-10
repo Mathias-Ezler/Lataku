@@ -8,7 +8,17 @@ const categories = getCategories();
 ---
 
 <Layout title='Home'>
-    {categories.map(category => (
+    <div class="flex flex-col items-center space-y-2 mt-5 mb-10">
+        <span class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+            Lataku - Ver Hentai en Español
+        </span>
+        <p class="text-sm md:text-base text-gray-200">
+            Bienvenido a la Mejor web de Porno Hentai en Español, disfruta de miles de videos hentai xxx online subtitulados al español puedes ver en linea o descargar en .mp4
+        </p>
+    </div>
+    
+    
+   {categories.map(category => (
         <CategorySection
             title={category}
             animes={getAnimesByCategory(category)}
