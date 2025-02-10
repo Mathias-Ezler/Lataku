@@ -1,22 +1,55 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+---
+// Layout.astro
+import Header from '../components/general/Header.astro';
+import '../styles/global.css';
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { 
+    title, 
+    description = "Tu portal de anime favorito con las últimas novedades y clásicos del anime" 
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{title} | AnimeZone</title>
+        <meta name="description" content={description} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <!-- Preconectar a fuentes de Google (opcional) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </head>
+    <body class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <!-- Efecto de malla gradiente superpuesto -->
+        <div class="fixed inset-0 bg-[linear-gradient(rgba(0,0,0,0.2)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.2)_2px,transparent_2px)] bg-[size:50px_50px] pointer-events-none"></div>
+        
+        <!-- Header -->
+        <Header />
+        
+        <!-- Contenido principal -->
+        <main class="container mx-auto px-4 pt-16 md:pt-24 pb-12 relative">
+            <!-- Efecto de brillo de fondo -->
+            <div class="absolute top-0 left-1/4 w-1/2 h-1/2 bg-purple-500 opacity-5 blur-[100px] rounded-full"></div>
+            <div class="absolute bottom-0 right-1/4 w-1/2 h-1/2 bg-blue-500 opacity-5 blur-[100px] rounded-full"></div>
+            
+            <!-- Slot para el contenido de la página -->
+            <slot />
+        </main>
+    </body>
 </html>
 
+
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+	html {
+	 scroll-behavior: smooth;
+	 }
+
 </style>

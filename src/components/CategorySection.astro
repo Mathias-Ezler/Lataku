@@ -1,0 +1,38 @@
+---
+import AnimeCard from './AnimeCard.astro';
+import { type Anime } from '../data/anime';
+
+interface Props {
+    title: string;
+    animes: Anime[];
+}
+
+const { title, animes } = Astro.props;
+---
+
+<section class="mb-12">
+    <!-- Título de la categoría con barra gradiente -->
+    <div class="relative mb-6">
+        <!-- Barra rosada en la punta izquierda -->
+        <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-pink-500 to-purple-500"></div>
+        
+        <!-- Título con fondo verde y borde rosado -->
+        <h2 class="text-2xl font-bold text-white pl-6 py-2 bg-gray-900 relative z-10">
+            {title}
+            <!-- El "ping" rosado más pequeño -->
+            <div class="absolute top-0 left-0 w-2 h-full bg-pink-500 transform -translate-x-2"></div>
+        </h2>
+    </div>
+
+    <!-- Grid de cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        {animes.map(anime => (
+            <AnimeCard
+                id={anime.id}
+                title={anime.title}
+                imageUrl={anime.imageUrl}
+                type={anime.type}
+            />
+        ))}
+    </div>
+</section>

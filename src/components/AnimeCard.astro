@@ -1,0 +1,38 @@
+---
+// src/components/AnimeCard.astro
+interface Props {
+  id: string;
+  title: string;
+  imageUrl: string;
+  type: 'TV' | 'Movie' | 'OVA';
+}
+
+const { id, title, imageUrl, type } = Astro.props;
+---
+
+<a href={`/anime/${id}`} class="relative">
+  <div class="relative overflow-hidden rounded-lg bg-gray-800 aspect-[3/4]">
+    <!-- Imagen -->
+    <img 
+      src={imageUrl} 
+      alt={title}
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+
+    <!-- Overlay gradiente estático -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+    <!-- Badge tipo -->
+    <span class="absolute top-2 right-2 px-2 py-1 text-xs font-semibold bg-pink-600 text-white rounded">
+      {type}
+    </span>
+    
+    <!-- Título siempre visible -->
+    <div class="absolute bottom-0 left-0 right-0 p-3">
+      <h3 class="text-sm font-medium text-white line-clamp-2">
+        {title}
+      </h3>
+    </div>
+  </div>
+</a>
