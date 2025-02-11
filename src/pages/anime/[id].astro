@@ -82,7 +82,7 @@ const { anime } = Astro.props;
     <!-- Sección del Trailer -->
     {anime.trailerUrl && (
       <div class="mb-12">
-        <h2 class="text-2xl text-white font-bold mb-6 relative pl-4 bg-gray-900 p-1">
+        <h2 class="text-2xl text-white font-bold mb-6 relative pl-4 bg-gray-900 p-2">
           <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-pink-500 to-purple-500"></div>
           Trailer
         </h2>
@@ -99,36 +99,41 @@ const { anime } = Astro.props;
     )}
 
     <!-- Sección de Episodios -->
-    {anime.episodes && anime.episodes.length > 0 && (
-      <div class="mb-12">
-        <h2 class="text-2xl text-white font-bold mb-6 relative pl-4 bg-gray-900 p-1">
-          <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-pink-500 to-purple-500"></div>
-          Episodios
-        </h2>
-        <div class="mb-4">
-          <select
-            id="episodeSelector"
-            class="bg-gray-700 text-white rounded p-2 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-purple-500"
-          >
-            {anime.episodes.map((episode, index) => (
-              <option value={episode.number} selected={index === 0}>
-                Episodio {episode.number}: {episode.title}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div id="videoContainer" class="relative w-full aspect-video">
-          <iframe
-            id="episodeVideo"
-            src={anime.episodes[0].videoUrl}
-            class="absolute inset-0 w-full h-full rounded-lg shadow-lg"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-            title={`${anime.title} - Episodio ${anime.episodes[0].number}`}
-          />
-        </div>
-      </div>
-    )}
+{anime.episodes && anime.episodes.length > 0 && (
+  <div class="mb-12">
+    <!-- Título de la sección -->
+    <h2 class="bg-gray-900 p-2 text-2xl text-white font-bold mb-6 relative pl-4">
+      <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-pink-500 to-purple-500"></div>
+      Episodios
+    </h2>
+
+    <!-- Selector de episodios -->
+    <div class="mb-6">
+      <select
+        id="episodeSelector"
+        class="bg-pink-700 border-2 border-purple-500 text-white rounded-lg p-2 w-full md:w-72 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200"
+      >
+        {anime.episodes.map((episode, index) => (
+          <option value={episode.number} selected={index === 0}>
+            Selecciona el: {episode.title}
+          </option>
+        ))}
+      </select>
+    </div>
+
+    <!-- Contenedor del video -->
+    <div id="videoContainer" class="relative w-full aspect-video bg-gray-800 rounded-lg overflow-hidden shadow-2xl">
+      <iframe
+        id="episodeVideo"
+        src={anime.episodes[0].videoUrl}
+        class="absolute inset-0 w-full h-full"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+        title={`${anime.title} - Episodio ${anime.episodes[0].number}`}
+      />
+    </div>
+  </div>
+)}
   </div>
 </Layout>
 
